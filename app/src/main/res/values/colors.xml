@@ -8,4 +8,17 @@
     <color name="hint_color">#6F6F6F</color>
     <color name="pink">#FF5A5F</color>
     <color name="logo_text_color">#3C3C3C</color>
+    <color name="nav_bg_color">#3C3C3C</color>
+    <color name="sea_green">#087E8B</color>
+    <color name="light_pink">#C1839F</color>
+    <color name="search_bar_grey">#828282</color>
+
+    <color name="email_color">#979797</color>
+    <color name="account_input_bg">#EAEAEA</color>
+    <color name="hint_account_color">#656565</color>
+
+
+
+
+
 </resources>

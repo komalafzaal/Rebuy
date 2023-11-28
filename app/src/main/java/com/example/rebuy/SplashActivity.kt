@@ -15,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
 
         val task: TimerTask = object : TimerTask() {
             override fun run() {
-                val intent = Intent(this@SplashActivity, SignUp::class.java)
+                val intent = Intent(this@SplashActivity, Home::class.java)
                 startActivity(intent)
                 finish()
             }
