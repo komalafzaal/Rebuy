@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderConfirmed"
+    android:backgroundTint="@color/form_bg_color">
+
+    <LinearLayout
+        android:paddingHorizontal="35dp"
+        android:id="@+id/main_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="55dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="46dp"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@drawable/rounded_grey_rectangle"
+            android:src="@drawable/back_icon"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/font"
+            android:text="ReBuy"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textSize="32dp"
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/progress_bar_step_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/progress_indicator_step_3"
+        app:layout_constraintTop_toBottomOf="@+id/main_linearlayout"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:id="@+id/order_confirmed_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="30dp"
+        android:text="Order Confirmed"
+        android:textColor="@color/logo_text_color"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/order_confirmed_layout"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar_step_3" />
+
+
+    <LinearLayout
+        android:id="@+id/order_confirmed_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:paddingVertical="20dp"
+        android:layout_marginHorizontal="35dp"
+        app:layout_constraintTop_toBottomOf="@+id/order_confirmed_label"
+        android:background="@drawable/rounded_white_bg">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/confirm_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your payment for ₹ 25,149 is succesfull"
+            android:textColor="@color/logo_text_color"
+            android:textSize="36dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/fira_bold"
+            android:textStyle="bold"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="10dp"
+            />
+
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintStart_toStartOf="@+id/order_confirmed_layout"
+        app:layout_constraintTop_toBottomOf="@+id/order_confirmed_layout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardcontarintlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/green_25"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/purchase_item_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/handsfree"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/order_placed_item_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/purchase_item_image"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/order_placed_item_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fira_bold"
+                    android:text="Shure podcast micro-phone"
+                    android:textColor="@color/logo_text_color"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/order_placed_item_tracking_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tracking ID: 989896654"
+                    android:textColor="@color/order_id_text"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/order_placed_item_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order ID: 985654841656589"
+                    android:textColor="@color/order_id_text"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_to_home_btn"
+        android:layout_width="match_parent"
+        android:layout_height="79dp"
+        android:text="Go to home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/pink_bottom_btn_bg"
+        android:fontFamily="@font/fira_bold"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="24dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

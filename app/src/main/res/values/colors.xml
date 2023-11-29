@@ -31,6 +31,13 @@
     <color name="form_bg_color">#F5F5F5</color>
     <color name="input_text_color">#606060</color>
 
+    <color name="green_25">#40088B0D</color>
+    <color name="order_id_text">#4F4F4F</color>
+
+    <color name="hint_cvv">#858585</color>
+
+
+
 
 
 </resources>
