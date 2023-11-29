@@ -12,22 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_horizontal"
+        android:gravity="center_vertical"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="46dp"
-            android:layout_height="46dp"
+            android:layout_height="wrap_content"
             android:padding="15dp"
-            android:layout_marginEnd="200dp"
             android:background="@drawable/rounded_grey_rectangle"
-            android:src="@drawable/back_icon"></androidx.appcompat.widget.AppCompatImageButton>
+            android:src="@drawable/back_icon"/>
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:fontFamily="@font/font"
             android:text="ReBuy"
+            android:layout_weight="1"
+            android:gravity="right"
             android:textSize="32dp"
             />
 

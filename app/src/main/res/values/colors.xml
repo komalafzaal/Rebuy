@@ -16,8 +16,16 @@
     <color name="email_color">#979797</color>
     <color name="account_input_bg">#EAEAEA</color>
     <color name="hint_account_color">#656565</color>
+    <color name="view_more">#898989</color>
+    <color name="side_bar_card_color">#D4E4E6</color>
+    <color name="side_bar_text_color">#5F5F5F</color>
+    <color name="side_bar_bottom_text_color">#F5F5F5</color>
 
+    <color name="my_order">#616161</color>
+    <color name="my_order_item_date">#898989</color>
 
+    <color name="my_listing_item_date">#C1839F</color>
+    <color name="my_listing_item_price">#087E8B</color>
 
 
 

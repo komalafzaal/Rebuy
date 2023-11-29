@@ -4,23 +4,36 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        newArrivals()
+
+        val sideBar : ImageButton  = findViewById(R.id.hamburg_icon)
+
+        sideBar.setOnClickListener {
+            val intent = Intent(this@Home, SideBarActivity::class.java)
+            startActivity(intent)
+        }
 
         var bottomNav = findViewById(R.id.bottomNav) as BottomNavigationView
         bottomNav.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home_menu -> {
-                    startActivity(Intent(this, Home::class.java))
+                    newArrivals()
                     true
                 }
                 R.id.explore_menu -> {
-                    startActivity(Intent(this, Home::class.java))
+                    Toast.makeText(this, "explore menu", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.camera_menu -> {
@@ -28,11 +41,11 @@ class Home : AppCompatActivity() {
                     true
                 }
                 R.id.favourites_menu -> {
-                    startActivity(Intent(this, Home::class.java))
+                    Toast.makeText(this, "favorites manu", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.chat_menu -> {
-                    startActivity(Intent(this, Home::class.java))
+                    Toast.makeText(this, "chat menu", Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> false
@@ -40,6 +53,25 @@ class Home : AppCompatActivity() {
         }
     }
 
+    private fun newArrivals()
+    {
+        val data = listOf(
+            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
+            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
+            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
+            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
+
+            )
+
+        // Initialize RecyclerView in Activity/Fragment
+        val horizontalRecyclerView: RecyclerView = findViewById(R.id.new_arrivals_recycler_view)
+        val horizontalLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        horizontalRecyclerView.layoutManager = horizontalLayoutManager
+
+        val newArrivalAdapter = ProductAdapter(data) // Pass your data to the adapter
+        horizontalRecyclerView.adapter = newArrivalAdapter
+
+    }
     private fun openCamera() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (cameraIntent.resolveActivity(packageManager) != null) {
