@@ -17,6 +17,7 @@ class Home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         newArrivals()
+        recentlyViewed()
 
         val sideBar : ImageButton  = findViewById(R.id.hamburg_icon)
 
@@ -53,15 +54,15 @@ class Home : AppCompatActivity() {
         }
     }
 
+    val data = listOf(
+        Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
+        Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
+        Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
+        Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
+
+        )
     private fun newArrivals()
     {
-        val data = listOf(
-            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
-            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
-            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
-            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
-
-            )
 
         // Initialize RecyclerView in Activity/Fragment
         val horizontalRecyclerView: RecyclerView = findViewById(R.id.new_arrivals_recycler_view)
@@ -71,7 +72,19 @@ class Home : AppCompatActivity() {
         val newArrivalAdapter = ProductAdapter(data) // Pass your data to the adapter
         horizontalRecyclerView.adapter = newArrivalAdapter
 
+
+    } private fun recentlyViewed()
+    {
+        // Initialize RecyclerView in Activity/Fragment
+        val horizontalRecyclerView1: RecyclerView = findViewById(R.id.recently_viewed_recycler_view)
+        val horizontalLayoutManager1 = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        horizontalRecyclerView1.layoutManager = horizontalLayoutManager1
+
+        val recentlyViewAdapter = ProductAdapter(data) // Pass your data to the adapter
+        horizontalRecyclerView1.adapter = recentlyViewAdapter
+
     }
+
     private fun openCamera() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (cameraIntent.resolveActivity(packageManager) != null) {

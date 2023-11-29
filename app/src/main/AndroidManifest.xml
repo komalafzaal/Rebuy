@@ -13,13 +13,13 @@
         android:theme="@style/Theme.Rebuy"
         tools:targetApi="31">
         <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
             android:name=".ProductDetails"
             android:exported="false" />
         <activity
-            android:name=".PurchaseForm"
-            android:exported="false" />
-        <activity
-            android:name=".Payment"
+            android:name=".OrderConfirmed"
             android:exported="false" />
         <activity
             android:name=".Listing"
@@ -28,7 +28,7 @@
             android:name=".Orders"
             android:exported="false" />
         <activity
-            android:name=".OrderConfirmed"
+            android:name=".Payment"
             android:exported="false" />
         <activity
             android:name=".SideBarActivity"
@@ -40,7 +40,7 @@
             android:name=".Account"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".PurchaseForm"
             android:exported="false" />
         <activity
             android:name=".SignUp"
