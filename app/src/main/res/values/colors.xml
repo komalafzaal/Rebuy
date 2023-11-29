@@ -27,6 +27,10 @@
     <color name="my_listing_item_date">#C1839F</color>
     <color name="my_listing_item_price">#087E8B</color>
 
+    <color name="sea_green_25">#40087E8B</color>
+    <color name="form_bg_color">#F5F5F5</color>
+    <color name="input_text_color">#606060</color>
+
 
 
 </resources>
