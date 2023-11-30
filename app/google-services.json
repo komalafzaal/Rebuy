@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1041261588341",
+    "project_id": "rebuy-a41d0",
+    "storage_bucket": "rebuy-a41d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041261588341:android:aaf9ce7188bcdb139fed3c",
+        "android_client_info": {
+          "package_name": "com.example.rebuy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOLo7wZknduSMY2pRlxYoHuJeKT4inw5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -146,6 +146,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_grey_bg"
             android:hint="Email"
+            android:inputType="textEmailAddress"
             android:textAlignment="textStart"
             android:paddingHorizontal="25dp"
             android:paddingVertical="18dp"
@@ -158,6 +159,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_grey_bg"
             android:hint="Password"
+            android:inputType="textPassword"
             android:textAlignment="textStart"
             android:paddingHorizontal="25dp"
             android:paddingVertical="18dp"
@@ -196,9 +198,10 @@
         android:text="Already have an account?"
         android:textColor="@color/text_grey"/>
         <TextView
-        android:id="@+id/login_text"
+        android:id="@+id/navigate_to_login"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:textStyle="bold"
+        android:layout_height="wrap_content"
+            android:textStyle="bold"
         android:text=" Log in"
         android:textColor="@color/pink"
         />
