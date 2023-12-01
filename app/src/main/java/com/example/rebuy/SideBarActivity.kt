@@ -48,7 +48,7 @@ class SideBarActivity : AppCompatActivity() {
 
             )
         // Initialize RecyclerView in Activity/Fragment
-        val verticalRecyclerView: RecyclerView = findViewById(R.id.side_bar_recycler_view)
+        val verticalRecyclerView = binding.sideBarRecyclerView
         val verticalLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         verticalRecyclerView.layoutManager = verticalLayoutManager
 

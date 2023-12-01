@@ -65,7 +65,8 @@
         app:layout_constraintTop_toBottomOf="@+id/text"
         android:layout_marginTop="15dp">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/google_btn"
             android:layout_width="105dp"
             android:padding="15dp"
             android:layout_marginEnd="10dp"
@@ -74,7 +75,8 @@
             android:src="@drawable/google"
             />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/twitter_btn"
             android:layout_width="105dp"
             android:padding="15dp"
             android:layout_marginEnd="10dp"
@@ -82,7 +84,8 @@
             android:background="@drawable/rounded_grey_bg"
             android:src="@drawable/twitter"
             />
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/apple_btn"
             android:layout_width="105dp"
             android:padding="15dp"
             android:layout_height="wrap_content"

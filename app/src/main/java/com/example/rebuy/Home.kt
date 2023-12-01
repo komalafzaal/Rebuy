@@ -10,24 +10,32 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rebuy.databinding.ActivityHomeBinding
+import com.example.rebuy.databinding.ActivitySignUpBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class Home : AppCompatActivity() {
+    private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater) // Initialize binding
+
+        setContentView(binding.root)
         newArrivals()
         recentlyViewed()
 
-        val sideBar : ImageButton  = findViewById(R.id.hamburg_icon)
+//        val receivedIntent = intent
+//        val userName = receivedIntent.getStringExtra("USERNAME")
+//        binding.userId.text = "Hello $userName"
 
-        sideBar.setOnClickListener {
+        binding.hamburgIcon.setOnClickListener {
             val intent = Intent(this@Home, SideBarActivity::class.java)
             startActivity(intent)
         }
 
-        var bottomNav = findViewById(R.id.bottomNav) as BottomNavigationView
-        bottomNav.setOnNavigationItemSelectedListener { menuItem ->
+
+        binding.bottomNav.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home_menu -> {
                     newArrivals()
@@ -65,22 +73,23 @@ class Home : AppCompatActivity() {
     {
 
         // Initialize RecyclerView in Activity/Fragment
-        val horizontalRecyclerView: RecyclerView = findViewById(R.id.new_arrivals_recycler_view)
+        val horizontalRecyclerView = binding.newArrivalsRecyclerView
         val horizontalLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         horizontalRecyclerView.layoutManager = horizontalLayoutManager
 
-        val newArrivalAdapter = ProductAdapter(data) // Pass your data to the adapter
+        val newArrivalAdapter = ProductAdapter(data)
         horizontalRecyclerView.adapter = newArrivalAdapter
 
 
-    } private fun recentlyViewed()
+    }
+    private fun recentlyViewed()
     {
         // Initialize RecyclerView in Activity/Fragment
-        val horizontalRecyclerView1: RecyclerView = findViewById(R.id.recently_viewed_recycler_view)
+        val horizontalRecyclerView1 =   binding.recentlyViewedRecyclerView
         val horizontalLayoutManager1 = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         horizontalRecyclerView1.layoutManager = horizontalLayoutManager1
 
-        val recentlyViewAdapter = ProductAdapter(data) // Pass your data to the adapter
+        val recentlyViewAdapter = ProductAdapter(data)
         horizontalRecyclerView1.adapter = recentlyViewAdapter
 
     }
