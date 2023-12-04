@@ -2,8 +2,9 @@ package com.example.rebuy
 
 data class Product(
     val name: String,
-    val date: String,
-    val company: String,
+    val type : String,
     val price: Double,
-    val views: String
+    val location: String,
+    val detail: String,
+    val image_url: String
 )

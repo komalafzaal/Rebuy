@@ -32,7 +32,6 @@ class MyOrderAdapter(private val productList: List<Product>) :
 
         fun bind(product: Product) {
             productName.text = product.name
-            productDate.text = product.date
             productPrice.text = product.price.toString()
 
             // Load product image using Glide/Picasso or other image loading libraries

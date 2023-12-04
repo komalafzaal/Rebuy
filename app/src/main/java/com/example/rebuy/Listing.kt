@@ -19,10 +19,7 @@ class Listing : AppCompatActivity() {
     private fun myListingCards()
     {
         val data = listOf(
-            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
-            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
-            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
-            Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
+            Product("Apple AirPods Pro", "Electronics",33.3,  "lahore", "this is A", "url"),
 
             )
 

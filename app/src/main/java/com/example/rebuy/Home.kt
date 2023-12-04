@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,20 +15,25 @@ import com.example.rebuy.databinding.ActivityHomeBinding
 import com.example.rebuy.databinding.ActivitySignUpBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Home : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
+    private val db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater) // Initialize binding
 
         setContentView(binding.root)
-        newArrivals()
-        recentlyViewed()
+        readDataFromFirebase()
 
-//        val receivedIntent = intent
-//        val userName = receivedIntent.getStringExtra("USERNAME")
-//        binding.userId.text = "Hello $userName"
+
+        val receivedIntent = intent
+        val userName = receivedIntent.getStringExtra("USERNAME")
+        val firstName = userName?.split(" ")?.firstOrNull() ?: ""
+        binding.userId.text = "Hello $firstName"
+
 
         binding.hamburgIcon.setOnClickListener {
             val intent = Intent(this@Home, SideBarActivity::class.java)
@@ -38,7 +44,7 @@ class Home : AppCompatActivity() {
         binding.bottomNav.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home_menu -> {
-                    newArrivals()
+                    readDataFromFirebase()
                     true
                 }
                 R.id.explore_menu -> {
@@ -46,7 +52,7 @@ class Home : AppCompatActivity() {
                     true
                 }
                 R.id.camera_menu -> {
-                    openCamera()
+                    startActivity(Intent(this,PostProduct::class.java))
                     true
                 }
                 R.id.favourites_menu -> {
@@ -62,14 +68,51 @@ class Home : AppCompatActivity() {
         }
     }
 
-    val data = listOf(
-        Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
-        Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
-        Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
-        Product("Apple AirPods Pro", "21 Jan 2021","Company A", 899.0, "1K"),
+//    val data = listOf(
+//        Product("Apple AirPods Pro", "Electronics",33.3,  "lahore", "this is A", "url"),
+//
+//        )
 
-        )
-    private fun newArrivals()
+    private fun readDataFromFirebase() {
+        val db = FirebaseFirestore.getInstance()
+        val productsCollection = db.collection("products")
+
+        productsCollection.get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val productsList = mutableListOf<Product>()
+
+                    for (document in querySnapshot) {
+                        val name = document.getString("name").toString()
+                        val productType = document.getString("type").toString()
+                        val productPrice = document.getDouble("price") ?: 0.0
+                        val productLocation = document.getString("location").toString()
+                        val productDetail = document.getString("detail").toString()
+                        val imageUrl = document.getString("image_url").toString()
+
+                        val product = Product(
+                            name,
+                            productType,
+                            productPrice,
+                            productLocation,
+                            productDetail,
+                            imageUrl
+                        )
+                        productsList.add(product)
+                    }
+                    newArrivals(productsList)
+                    recentlyViewed(productsList)
+                } else {
+                    Log.d("Firestore", "No products found")
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w("Firestore", "Error reading document", e)
+            }
+    }
+
+
+    private fun newArrivals(productData: List<Product> )
     {
 
         // Initialize RecyclerView in Activity/Fragment
@@ -77,29 +120,21 @@ class Home : AppCompatActivity() {
         val horizontalLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         horizontalRecyclerView.layoutManager = horizontalLayoutManager
 
-        val newArrivalAdapter = ProductAdapter(data)
+        val newArrivalAdapter = ProductAdapter(productData)
         horizontalRecyclerView.adapter = newArrivalAdapter
 
 
     }
-    private fun recentlyViewed()
+    private fun recentlyViewed(productData: List<Product> )
     {
         // Initialize RecyclerView in Activity/Fragment
         val horizontalRecyclerView1 =   binding.recentlyViewedRecyclerView
         val horizontalLayoutManager1 = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         horizontalRecyclerView1.layoutManager = horizontalLayoutManager1
 
-        val recentlyViewAdapter = ProductAdapter(data)
+        val recentlyViewAdapter = ProductAdapter(productData)
         horizontalRecyclerView1.adapter = recentlyViewAdapter
 
     }
 
-    private fun openCamera() {
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (cameraIntent.resolveActivity(packageManager) != null) {
-            startActivity(cameraIntent)
-        } else {
-            Toast.makeText(this, "Camera not available", Toast.LENGTH_SHORT).show()
-        }
-    }
 }

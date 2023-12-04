@@ -1,9 +1,11 @@
 package com.example.rebuy
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import com.example.rebuy.databinding.ActivityLoginBinding
@@ -14,11 +16,14 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.OAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Login : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    val request_code = 1001
+    private val request_code = 1001
+    private val db = FirebaseFirestore.getInstance()
+
 
     companion object {
         lateinit var auth: FirebaseAuth
@@ -30,7 +35,6 @@ class Login : AppCompatActivity() {
 
         setContentView(binding.root)
 
-
         auth = FirebaseAuth.getInstance()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -39,10 +43,6 @@ class Login : AppCompatActivity() {
             .build()
 
         val googleSigninClient = GoogleSignIn.getClient(this, gso)
-
-
-        val provider = OAuthProvider.newBuilder("twitter.com")
-        provider.addCustomParameter("lang", "fr")
 
         binding.navigateToSignup.setOnClickListener {
             val intent = Intent(this@Login, SignUp::class.java)
@@ -54,10 +54,25 @@ class Login : AppCompatActivity() {
             val password = binding.userPassowrd.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        startActivity(Intent(this@Login, Home::class.java))
-                        finish()
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { loginTask->
+                    if (loginTask.isSuccessful) {
+                        val currentUser = auth.currentUser
+                        currentUser?.let { user ->
+                            val userId = user.uid
+                            val userRef = db.collection("users").document(userId)
+
+                            userRef.get().addOnSuccessListener { document ->
+                                if (document.exists()) {
+                                    val userName = document.getString("name")
+                                    userName?.let {
+                                        val intent = Intent(this@Login, Home::class.java)
+                                        intent.putExtra("USERNAME", it) // Pass the username
+                                        startActivity(intent)
+                                        finish()
+                                    }
+                                } else { Log.d(TAG, "No such document") }
+                            }.addOnFailureListener { exception -> Log.d(TAG, "get failed with ", exception) }
+                        }
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
@@ -69,7 +84,6 @@ class Login : AppCompatActivity() {
             startActivityForResult(googleSigninClient.signInIntent, request_code)
 
         }
-
         binding.twitterBtn.setOnClickListener {
             startActivity(Intent(this@Login, TwitterActivity::class.java))
         }
@@ -91,7 +105,7 @@ class Login : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = FirebaseAuth.getInstance().currentUser
                     if (user != null) {
-                        val userName = user.email
+                        val userName = user.displayName
                         val intent = Intent(this, Home::class.java)
                         intent.putExtra("USERNAME", userName)
                         startActivity(intent)
