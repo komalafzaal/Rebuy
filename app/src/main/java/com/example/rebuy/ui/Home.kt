@@ -1,20 +1,16 @@
-package com.example.rebuy
+package com.example.rebuy.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.rebuy.Adapters.ProductAdapter
+import com.example.rebuy.Model.data.Product
+import com.example.rebuy.R
+import com.example.rebuy.SideBarActivity
 import com.example.rebuy.databinding.ActivityHomeBinding
-import com.example.rebuy.databinding.ActivitySignUpBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Home : AppCompatActivity() {
@@ -52,7 +48,7 @@ class Home : AppCompatActivity() {
                     true
                 }
                 R.id.camera_menu -> {
-                    startActivity(Intent(this,PostProduct::class.java))
+                    startActivity(Intent(this, PostProduct::class.java))
                     true
                 }
                 R.id.favourites_menu -> {

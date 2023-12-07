@@ -1,11 +1,11 @@
 package com.example.rebuy
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rebuy.Adapters.MyListingAdapter
+import com.example.rebuy.Model.data.Product
 
 class Listing : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

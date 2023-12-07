@@ -1,4 +1,6 @@
 plugins {
+    id ("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
@@ -39,6 +41,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation("androidx.core:core-splashscreen:1.1.0-alpha02")
 
@@ -66,4 +69,8 @@ dependencies {
     implementation ("androidx.activity:activity-ktx:1.2.3")
     implementation ("androidx.fragment:fragment-ktx:1.3.3")
 //    implementation ("com.github.Drjacky:ImagePicker:$libVersion")
+
+    //Hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
 }

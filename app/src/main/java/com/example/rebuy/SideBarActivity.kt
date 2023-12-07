@@ -1,14 +1,12 @@
 package com.example.rebuy
 
-import SideBarAdapter
+import com.example.rebuy.Adapters.SideBarAdapter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.rebuy.databinding.ActivityAccountBinding
 import com.example.rebuy.databinding.ActivitySideBarBinding
+import com.example.rebuy.ui.Login
 import com.google.firebase.auth.FirebaseAuth
 
 class SideBarActivity : AppCompatActivity() {
