@@ -1,13 +1,12 @@
 package com.example.rebuy.ViewModels
-
 import androidx.lifecycle.ViewModel
-import com.example.rebuy.Model.Repository.AuthRepository
+import com.example.rebuy.Model.Repository.AuthRepositoryImp
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val repository: AuthRepository) : ViewModel() {
+class LoginViewModel @Inject constructor(private val repository: AuthRepositoryImp) : ViewModel() {
 
     val signInResultLiveData = repository.signInResultLiveData
     val userLiveData = repository.userLiveData
@@ -16,4 +15,5 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepository)
 
     fun signInWithGoogle(account : GoogleSignInAccount) =
         repository.signInWithGoogle(account)
+
 }

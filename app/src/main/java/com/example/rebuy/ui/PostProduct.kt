@@ -7,18 +7,24 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.rebuy.Model.data.Product
 import com.example.rebuy.R
+import com.example.rebuy.ViewModels.ProductViewModel
+import com.example.rebuy.ViewModels.SignupViewModel
 import com.example.rebuy.databinding.ActivityPostProductBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
-
+@AndroidEntryPoint
 class PostProduct : AppCompatActivity() {
     private lateinit var binding: ActivityPostProductBinding
     private var selectedImageUri: Uri? = null
+    private lateinit var viewModel: ProductViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +36,8 @@ class PostProduct : AppCompatActivity() {
         val arrayAdapter = ArrayAdapter(this, R.layout.dropdown, languages)
         val autocompleteTV = binding.autoCompleteTextView
         autocompleteTV.setAdapter(arrayAdapter)
+
+        viewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
 
         binding.backBtn.setOnClickListener{
             finish()
@@ -46,8 +54,6 @@ class PostProduct : AppCompatActivity() {
         }
 
         binding.postBtn.setOnClickListener {
-            Log.e("ImageUpload", "in post btn")
-
             val productType = binding.autoCompleteTextView.text.toString()
             val productName = binding.nameInput.text.toString()
             val productPrice = binding.priceInput.text.toString().toDouble()
@@ -57,38 +63,38 @@ class PostProduct : AppCompatActivity() {
 
             val filePath = selectedImageUri?.path
             if (filePath != null) {
-                val storageRef = FirebaseStorage.getInstance().getReference().child("product_images/${System.currentTimeMillis()}.jpg")
-
-                storageRef.putFile(Uri.fromFile(File(filePath)))
-                    .addOnSuccessListener { taskSnapshot ->
-                        taskSnapshot.storage.downloadUrl.addOnSuccessListener { imageUrl ->
-                            val product = Product(productName, productType, productPrice, productLocation, productDetail, imageUrl.toString())
-                            saveProductToFirestore(product)
-                            Toast.makeText(this, "Product Uplaod", Toast.LENGTH_SHORT).show()
-
-                        }
+                viewModel.uploadImage(selectedImageUri!!)
+                    .addOnSuccessListener { imageUrl ->
+                        val product = Product(
+                            productName,
+                            productType,
+                            productPrice,
+                            productLocation,
+                            productDetail,
+                            imageUrl.toString()
+                        )
+                        viewModel.saveProductToFirestore(product)
                     }
-                    .addOnFailureListener { e ->
-                        Log.e("ImageUpload", "Image upload failed: ${e.message}")
+                    .addOnFailureListener { exception ->
+                        Log.e("ImageUpload", "Image upload failed: ${exception.message}")
                     }
             } else {
-                Log.e("ImageUpload", "No image selected")
+                Log.d("ImageUpload", "No image selected")
             }
         }
-    }
 
 
-    private fun saveProductToFirestore(product: Product) {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("products")
-            .add(product)
-            .addOnSuccessListener { documentReference ->
-                Log.d("ProductUpload", "Product added with ID: ${documentReference.id}")
+        viewModel.productUploadResult.observe(this, Observer { isSuccessful ->
+            if (isSuccessful) {
+                Toast.makeText(this, "Product Uploaded Successfully", Toast.LENGTH_SHORT).show()
+                finish()
+            } else {
+                Toast.makeText(this, "Failed to upload product", Toast.LENGTH_SHORT).show()
             }
-            .addOnFailureListener { e ->
-                Log.w("ProductUpload", "Error adding product", e)
-            }
+        })
+
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -96,7 +102,6 @@ class PostProduct : AppCompatActivity() {
             selectedImageUri = data?.data
             // Handle displaying the selected image in the UI if required
             binding.uploadImage.setImageURI(selectedImageUri)
-
             Log.d("Image", "Image uploaded successfully")
         }
     }
