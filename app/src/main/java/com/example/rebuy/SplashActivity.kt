@@ -2,8 +2,8 @@ package com.example.rebuy
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.example.rebuy.ui.Login
 import java.util.Timer
 import java.util.TimerTask
 

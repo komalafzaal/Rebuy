@@ -1,3 +1,5 @@
+package com.example.rebuy.Adapters
+
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rebuy.Account
-import com.example.rebuy.Home
+import com.example.rebuy.ui.Home
 import com.example.rebuy.Listing
 import com.example.rebuy.Orders
 import com.example.rebuy.R

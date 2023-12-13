@@ -1,4 +1,4 @@
-package com.example.rebuy
+package com.example.rebuy.Model.data
 
 data class Product(
     val name: String,

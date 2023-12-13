@@ -1,6 +1,5 @@
-package com.example.rebuy
+package com.example.rebuy.ui
 
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -8,12 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.example.rebuy.Model.data.Product
+import com.example.rebuy.R
 import com.example.rebuy.databinding.ActivityPostProductBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
-import java.util.UUID
 
 
 class PostProduct : AppCompatActivity() {

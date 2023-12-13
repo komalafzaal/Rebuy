@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rebuy.Adapters.MyOrderAdapter
+import com.example.rebuy.Model.data.Product
 
 class Orders : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
