@@ -43,7 +43,7 @@
                 android:id="@+id/welcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome back!"
+                android:text="Welcome!"
                 android:textColor="@color/pink"
                 android:textSize="22dp" />
         </LinearLayout>
@@ -114,6 +114,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/new_arrivals_recycler_view"
+        app:layout_constraintBottom_toTopOf="@+id/recently_viewed_recycler_view"
         android:layout_marginTop="30dp">
 
         <TextView
@@ -140,6 +141,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/recently_viewed_section"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         />
 
 <!--    <FrameLayout-->

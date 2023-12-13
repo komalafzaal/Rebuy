@@ -60,6 +60,7 @@
         android:layout_marginEnd="10dp"
         />
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sign_out"
             android:layout_width="165dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_black_bg"

@@ -1,3 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Rebuy</string>
+    <string name="client_id" tools:ignore="TypographyDashes">1041261588341-3g6h1tjlp02ona5suv6eakr85cgggg2t.apps.googleusercontent.com</string>
+
+    <string-array name="Product_Type">
+        <item>Electronics</item>
+        <item>Clothes</item>
+        <item>Toys</item>
+        <item>Accessories</item>
+    </string-array>
 </resources>

@@ -47,19 +47,11 @@
                     android:id="@+id/product_year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2018 |"
+                    android:text="2018 | FunSkool"
                     android:textColor="@color/light_pink"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
-                <TextView
-                    android:id="@+id/product_company"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" FunSkool"
-                    android:textColor="@color/light_pink"
-                    app:layout_constraintStart_toEndOf="@id/product_year"
-                    app:layout_constraintTop_toTopOf="@id/product_year"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 

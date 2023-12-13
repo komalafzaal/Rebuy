@@ -15,13 +15,14 @@ class SplashActivity : AppCompatActivity() {
 
         val task: TimerTask = object : TimerTask() {
             override fun run() {
-                val intent = Intent(this@SplashActivity, Home::class.java)
+                val intent = Intent(this@SplashActivity, Login::class.java)
                 startActivity(intent)
                 finish()
             }
         }
         val t = Timer()
         t.schedule(task, 3000)
+
 
     }
 }

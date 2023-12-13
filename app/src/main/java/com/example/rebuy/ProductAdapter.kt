@@ -1,8 +1,8 @@
 package com.example.rebuy
+import android.icu.util.Calendar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -24,18 +24,20 @@ class ProductAdapter(private val productList: List<Product>) :
     }
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var year: Int = Calendar.getInstance().get(Calendar.YEAR);
+
         private val productName: TextView = itemView.findViewById(R.id.product_name)
         private val productYear: TextView = itemView.findViewById(R.id.product_year)
-        private val productCompany: TextView = itemView.findViewById(R.id.product_company)
         private val productPrice: TextView = itemView.findViewById(R.id.product_price)
+//        private val productImage: ImageView = itemView.findViewById(R.id.upload_image)
 
-        // Add other views as needed
 
         fun bind(product: Product) {
             productName.text = product.name
-            productYear.text = product.date
-            productCompany.text = product.company
-            productPrice.text = product.price.toString()
+            productPrice.text = "₹ " + product.price.toString()
+            productYear.text = year.toString() + " | "+ product.location
+//            productImage.setImageResource(product.image_url)
+
 
         }
     }
