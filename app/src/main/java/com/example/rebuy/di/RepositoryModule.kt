@@ -3,6 +3,7 @@ import com.example.rebuy.Model.Repository.AuthRepository
 import com.example.rebuy.Model.Repository.AuthRepositoryImp
 import com.example.rebuy.Model.Repository.ProductRepository
 import com.example.rebuy.Model.Repository.ProductRepositoryImp
+import com.example.rebuy.Model.Repository.QuoteRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -37,4 +38,5 @@ object RepositoryModule {
     {
         return ProductRepositoryImp(auth, database, storage)
     }
+
  }
