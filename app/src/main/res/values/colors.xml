@@ -2,4 +2,48 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#DEDEDE</color>
+    <color name="text_grey">#8D8D8D</color>
+
+    <color name="hint_color">#6F6F6F</color>
+    <color name="pink">#FF5A5F</color>
+    <color name="logo_text_color">#3C3C3C</color>
+    <color name="nav_bg_color">#3C3C3C</color>
+    <color name="sea_green">#087E8B</color>
+    <color name="light_pink">#C1839F</color>
+    <color name="search_bar_grey">#828282</color>
+
+    <color name="email_color">#979797</color>
+    <color name="account_input_bg">#EAEAEA</color>
+    <color name="hint_account_color">#656565</color>
+    <color name="view_more">#898989</color>
+    <color name="side_bar_card_color">#D4E4E6</color>
+    <color name="side_bar_text_color">#5F5F5F</color>
+    <color name="side_bar_bottom_text_color">#F5F5F5</color>
+
+    <color name="my_order">#616161</color>
+    <color name="my_order_item_date">#898989</color>
+
+    <color name="my_listing_item_date">#C1839F</color>
+    <color name="my_listing_item_price">#087E8B</color>
+
+    <color name="sea_green_25">#40087E8B</color>
+    <color name="form_bg_color">#F5F5F5</color>
+    <color name="input_text_color">#606060</color>
+
+    <color name="green_25">#40088B0D</color>
+    <color name="order_id_text">#4F4F4F</color>
+
+    <color name="hint_cvv">#858585</color>
+    <color name="desc">#666666</color>
+    <color name="bottom_btn">#727272</color>
+
+
+
+
+
+
+
+
+
 </resources>

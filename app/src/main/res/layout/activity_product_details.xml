@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductDetails"
+    android:backgroundTint="@color/form_bg_color">
+
+    <LinearLayout
+        android:paddingHorizontal="35dp"
+        android:id="@+id/main_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="55dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="46dp"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@drawable/rounded_grey_rectangle"
+            android:src="@drawable/back_icon"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/font"
+            android:text="ReBuy"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textSize="32dp"
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/product_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_linearlayout" />
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/product_image"
+        app:layout_constraintStart_toStartOf="@+id/product_image"
+        app:layout_constraintTop_toBottomOf="@+id/product_image">
+
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fira_bold"
+            android:text="Shure podcast micro-phone"
+            android:textColor="@color/logo_text_color"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fira_bold"
+            android:text="₹ 24,999"
+            android:textColor="@color/sea_green"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/product_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Shure SM7B reigns as king of studio recording for good reason: vocal recording and reproduction is clear and crisp, especially when recording in a more..."
+            android:textColor="@color/desc"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/product_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make: Shure | Year: 2020"
+            android:textColor="@color/order_id_text"
+            android:layout_marginVertical="10dp"
+            android:textSize="16dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_black_white_bg"
+            android:text="Search Details"
+            android:textAllCaps="false"
+            android:textSize="16dp"
+            android:fontFamily="@font/fira_bold"
+            android:paddingHorizontal="30dp"
+            android:drawableLeft="@drawable/google"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="20dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save_btn"
+            android:layout_width="0dp"
+            android:layout_height="79dp"
+            android:layout_weight="1"
+            android:text="Save item"
+            android:background="@drawable/grey_bottom_btn_bg"
+            android:fontFamily="@font/fira_bold"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textSize="24dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buy_btn"
+            android:layout_width="0dp"
+            android:layout_height="79dp"
+            android:layout_weight="1"
+            android:text="Buy now"
+            android:background="@drawable/pink_bottom_btn_bg"
+            android:fontFamily="@font/fira_bold"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textSize="24dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

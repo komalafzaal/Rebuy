@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--  &lt;!&ndash; Circle background &ndash;&gt;-->
+  <item>
+    <shape android:shape="oval">
+
+      <solid android:color="@color/form_bg_color" />
+      <size android:width="54dp" android:height="54dp" />
+    </shape>
+  </item>
+
+  <!-- Icon -->
+  <item
+      android:drawable="@drawable/camera"
+      android:gravity="center" />
+
+</layer-list>
